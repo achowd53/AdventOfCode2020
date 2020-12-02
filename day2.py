@@ -1,6 +1,5 @@
 o1=0
 o2=0
-l=[] 
 for s in open("day2.txt"):
     s=s.strip()
     ran,c,passw = s.split(" ")

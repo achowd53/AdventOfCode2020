@@ -7,7 +7,7 @@ for s in open("day2.txt"):
     c = c[0]
     if a<=pas.count(c)<=b:
         o1+=1
-    if (pas[a-1]+pas[b-1]).count(c)==1:
+    if (pas[a-1]==c)^(pas[b-1]==c): #Only 1 True, XOR
         o2+=1
 print(o1)
 print(o2)

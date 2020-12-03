@@ -11,7 +11,7 @@ for xi,yi in [(3,1),(1,1),(5,1),(7,1),(1,2)]:
     tree=0
     while y<b-1:
         x=(x+xi)%r
-        y=(y+yi)%b
+        y+=yi
         if l[y][x]=="#":
             tree+=1
     if (xi,yi) == (3,1):

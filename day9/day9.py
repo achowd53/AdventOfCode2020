@@ -1,7 +1,4 @@
-import re #re.split(), re.match, re.findall, Regex Guide at https://www.debuggex.com/cheatsheet/regex/python
-import collections #defaultdicts, maybe counters
-import string, numpy, itertools
-#Sets are POG {}, A|B finds union of sets, A&B finds intersection, A-B finds difference, A^B is (A|B)-(A&B)
+import itertools
 
 def run(filename, preamble):
     print("Running",filename+"...")

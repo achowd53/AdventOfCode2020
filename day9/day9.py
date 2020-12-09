@@ -5,7 +5,6 @@ import string, numpy, itertools
 
 def run(filename, preamble):
     print("Running",filename+"...")
-
     lines = [*map(int,open(filename).read().splitlines())]
     seen=[]
     for i,val in enumerate(lines):
@@ -19,17 +18,12 @@ def run(filename, preamble):
                 print(sum:=val)
                 break
         seen.append(val)
-    sums = [[0]*len(lines) for i in range(len(lines))]
-    for i in range(len(sums)):
-        prefix=[]
-        for _ in range(i+1): prefix.append(0)
-        for j in range(i,len(sums)):
-            prefix.append(prefix[-1]+lines[j])
-        sums[i]=prefix[1:]
-    for i in range(len(lines)):
-        for j in range(len(lines)):
-            if sums[i][j]==sum:
-                print(min(lines[i:j+1])+max(lines[i:j+1]))
+    prefix=[0]
+    for i in range(len(lines)): prefix.append(prefix[-1]+lines[i])
+    for i in range(1, len(prefix)):
+        for j in range(i+1, len(prefix)):
+            if prefix[j]-prefix[i]==sum:
+                print(min(lines[i:j])+max(lines[i:j]))
                 return -1
 
 run("example.txt", 5)

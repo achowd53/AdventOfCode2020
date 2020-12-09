@@ -1,8 +1,6 @@
 import itertools
-
 def run(filename, preamble):
-    print("Running",filename+"...")
-    lines = [*map(int,open(filename).read().splitlines())]
+    lines = [*map(int,open(filename).readlines())]
     seen=[]
     for i,val in enumerate(lines):
         if i > preamble:
@@ -22,7 +20,4 @@ def run(filename, preamble):
             if prefix[j]-prefix[i]==sum:
                 print(min(lines[i:j])+max(lines[i:j]))
                 return -1
-
-run("example.txt", 5)
-print()
 run("day9.txt", 25)

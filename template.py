@@ -1,6 +1,6 @@
 import re #re.split(), re.match, re.findall, Regex Guide at https://www.debuggex.com/cheatsheet/regex/python
 import collections #defaultdicts, maybe counters
-import functools #use @lru_cache above a function to keep track of all inputs and speed it up
+import functools #use @functools.lru_cache(None) above a function to keep track of all inputs and speed it up
 import string, numpy, itertools
 #Sets are POG {}, A|B finds union of sets, A&B finds intersection, A-B finds difference, A^B is (A|B)-(A&B)
 

@@ -1,4 +1,4 @@
-from copy import deepcopy
+import copy, itertools
 lines=[*map(list,open("day11.txt").read().splitlines())]
 r,c=len(lines),len(lines[0])
 def adj_part1(seats,y,x):
@@ -11,17 +11,15 @@ def adj_part2(seats,y,x):
         if 0<=cx<c and 0<=cy<r and seats[cy][cx]=="#": count+=1
     return count
 def forward_state(seats, part):
-    adjs,occ,new = {1:lambda*a:adj_part1(*a),2:lambda*a:adj_part2(*a)}, {1:4, 2:5}, deepcopy(seats)
-    for y in range(r):
-        for x in range(c):
+    adjs,occ,new = {1:lambda*a:adj_part1(*a),2:lambda*a:adj_part2(*a)}, {1:4, 2:5}, copy.deepcopy(seats)
+    for y,x in itertools.product(range(r),range(c)):
             if seats[y][x]=="L"and adjs[part](seats,y,x)==0: new[y][x]="#"
             elif seats[y][x]=="#"and adjs[part](seats,y,x)>=occ[part]: new[y][x]="L"
     return new
 def run(part):
-    board,prev=deepcopy(lines),[]
+    board,prev=copy.deepcopy(lines),[]
     while prev!=board:
-        prev=deepcopy(board)
+        prev=copy.deepcopy(board)
         board=forward_state(board, part)
     return sum(line.count('#') for line in board)
-print("Part 1:",run(1))
-print("Part 2:",run(2))
+print("Part 1:",run(1),"\nPart 2:",run(2))

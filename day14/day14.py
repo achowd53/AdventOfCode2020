@@ -13,6 +13,5 @@ for line in lines:
             address = address_bit[:]
             indices = [i for i in range(36) if address[i]=="X"]
             while possible: address[indices.pop()] = str(possible.pop())
-            address = "".join(address)
-            p2_memory[int(address)] = value
+            p2_memory[int("".join(address))] = value
 print("Part 1:",sum(p1_memory.values()),"\nPart 2:",sum(p2_memory.values()))

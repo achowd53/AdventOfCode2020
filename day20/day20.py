@@ -1,9 +1,8 @@
-import numpy as np; import collections
-from copy import deepcopy; import operator; import functools; from itertools import product
+import numpy as np; from itertools import product
 read = open("day20.txt").read().split('\n\n')
-tiles,edgetotile = {}, collections.defaultdict(list)
+tiles,edgetotile = {}, __import__("collections").defaultdict(list)
 def get_edges(tile):
-    tile = deepcopy(tile)
+    tile = __import__("copy").deepcopy(tile)
     return [''.join(['0' if x==0else'1'for x in tile[0]]),''.join('0' if x==0else'1'for x in tile[:,-1]),
             ''.join(['0' if x==0else'1'for x in tile[-1]]),''.join('0' if x==0else'1'for x in tile[:,0])]
 def hflip(tile): return np.fliplr(tile)
@@ -18,7 +17,7 @@ for tile in read: #For each tile in the input
         edgetotile[edge[::-1]].append(num_tile)
 possible_corners = [edgetotile[edge][0] for edge in edgetotile if len(edgetotile[edge])==1]
 corners = [num_tile for num_tile in set(possible_corners) if possible_corners.count(num_tile)==4]
-print("Part 1:",functools.reduce(operator.mul,corners))
+print("Part 1:",__import__("functools").reduce(__import__("operator").mul,corners))
 grid = [[None]*12 for _ in range(12)] #Setting up Puzzle Grid
 grid[0][0],num_tile,tile = corners[0], corners[0], tiles[corners[0]] #Orientate Corner
 correct_edges = [i for i,edge in enumerate(get_edges(tile)) if len(edgetotile[edge])==1]

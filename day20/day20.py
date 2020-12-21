@@ -1,5 +1,4 @@
 import numpy as np; from itertools import product
-read = open("day20.txt").read().split('\n\n')
 tiles,edgetotile = {}, __import__("collections").defaultdict(list)
 def get_edges(tile):
     tile = __import__("copy").deepcopy(tile)
@@ -8,7 +7,7 @@ def get_edges(tile):
 def hflip(tile): return np.fliplr(tile)
 def vflip(tile): return np.flipud(tile)
 def rotate(tile, n=1): return np.rot90(tile, n)
-for tile in read: #For each tile in the input
+for tile in open("day20.txt").read().split('\n\n'): #For each tile in the input
     lines = tile.splitlines()
     num_tile = int(lines[0].split()[1][:-1])
     tiles[num_tile] = np.array([[0if x=='.'else 1for x in line]for line in lines[1:]])

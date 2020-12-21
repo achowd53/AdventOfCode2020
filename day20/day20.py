@@ -33,6 +33,6 @@ for y,x in product(range(12),range(1,12)): #Fill Out Rest
     if get_edges(tile)[3] != tile_edge: tile = flipud(tile)
     tiles[next_tile] = tile
 grid = concatenate([concatenate([tiles[x][1:-1,1:-1] for x in grid[y]],1) for y in range(12)],0)
-snek = [(18,0),(0,1),(5,1),(6,1),(11,1),(12,1),(17,1),(18,1),(19,1),(1,2),(4,2),(7,2),(10,2),(13,2),(16,2)] #Senks
-def sea(var):return npsum(var)-sum(15for y,x in product(range(94),range(77))if all(var[y+b][x+a]==1for a,b in snek))
+snek = [(18,0),(0,1),(5,1),(6,1),(11,1),(12,1),(17,1),(18,1),(19,1),(1,2),(4,2),(7,2),(10,2),(13,2),(16,2)]
+sea = lambda v:npsum(v)-sum(15for y,x in product(range(94),range(77))if all(v[y+b][x+a]==1for a,b in snek))
 print("Part 2:",min([sea(var)for var in chain(*[(rot90(grid,n),rot90(flipud(grid),n))for n in range(4)])]))

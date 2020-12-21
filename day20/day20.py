@@ -27,18 +27,14 @@ for y in range(1,12): #Set up left edge
     tile_num,tile_edge = grid[y-1][0], get_edges(tiles[grid[y-1][0]])[2]
     next_tile = (set(edgetotile[tile_edge])-{tile_num}).pop()
     grid[y][0],tile,edges = next_tile, tiles[next_tile], get_edges(tiles[next_tile])
-    if tile_edge in edges: correct_edge = edges.index(tile_edge)
-    else: correct_edge = edges.index(tile_edge[::-1])
-    tile = rotate(tile,correct_edge)
+    tile = rotate(tile,edges.index(tile_edge)if tile_edge in edges else edges.index(tile_edge[::-1]))
     if get_edges(tile)[0] != tile_edge: tile = hflip(tile)
     tiles[next_tile] = tile
 for y,x in product(range(12),range(1,12)): #Fill Out Rest
     num_tile,tile_edge = grid[y][x-1], get_edges(tiles[grid[y][x-1]])[1]
     next_tile = (set(edgetotile[tile_edge])-{num_tile}).pop()
     grid[y][x],tile,edges = next_tile, tiles[next_tile], get_edges(tiles[next_tile])
-    if tile_edge in edges: correct_edge = edges.index(tile_edge)
-    else: correct_edge = edges.index(tile_edge[::-1])
-    tile = rotate(tile, correct_edge+1)
+    tile = rotate(tile, 1+(edges.index(tile_edge)if tile_edge in edges else edges.index(tile_edge[::-1])))
     if get_edges(tile)[3] != tile_edge: tile = vflip(tile)
     tiles[next_tile] = tile
 grid = np.concatenate([np.concatenate([tiles[x][1:-1,1:-1] for x in grid[y]],1) for y in range(12)],0)
